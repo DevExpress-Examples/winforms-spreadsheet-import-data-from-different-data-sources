@@ -8,8 +8,10 @@ namespace DataImportExample
 {
     public partial class Form1 : DevExpress.XtraEditors.XtraForm
     {
+        #region #ImageBytes
         byte[] imageBytes1 = File.ReadAllBytes("images//img.png");
         byte[] imageBytes2 = File.ReadAllBytes("images//x-docserver.png");
+        #endregion #ImageBytes
         // ...
         public Form1()
         {
