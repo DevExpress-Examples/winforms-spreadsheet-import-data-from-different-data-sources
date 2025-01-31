@@ -1,37 +1,57 @@
-﻿Imports DevExpress.Drawing
-Imports DevExpress.Spreadsheet
-Imports System
-Imports System.Collections.Generic
-Imports System.Linq
-Imports System.Text
+Imports DevExpress.Drawing
+Imports System.Runtime.InteropServices
 
 Namespace DataImportExample
+
 #Region "#converter"
     Friend Class TestDataValueConverter
-        Implements IDataValueConverter
-        Private Function IDataValueConverter_TryConvert(value As Object, index As Integer, ByRef result As CellValue) As Boolean Implements IDataValueConverter.TryConvert
-            If TypeOf value Is String Then
-                Dim strValue As String = TryCast(value, String)
+        Implements DevExpress.Spreadsheet.IDataValueConverter
 
-                Try
-                    result = DXImage.FromBase64String(strValue)
-                Catch
-                    Dim str2int As Integer = 0
-
-                    If Int32.TryParse(strValue, str2int) Then
-                        result = str2int
-                    Else
-                        result = strValue
-                    End If
-                End Try
-
-                Return True
-            End If
-
-            result = DevExpress.Spreadsheet.CellValue.TryCreateFromObject(value)
-            Return True
-        End Function
-
+        Public Function TryConvert(ByVal value As Object, ByVal columnIndex As Integer, <Out> ByRef result As DevExpress.Spreadsheet.CellValue) As Boolean Implements DevExpress.Spreadsheet.IDataValueConverter.TryConvert
+             ''' Cannot convert SwitchStatementSyntax, System.InvalidCastException: Unable to cast object of type 'Microsoft.CodeAnalysis.VisualBasic.Syntax.EmptyStatementSyntax' to type 'Microsoft.CodeAnalysis.VisualBasic.Syntax.CaseClauseSyntax'.
+'''    at System.Linq.Enumerable.<CastIterator>d__97`1.MoveNext()
+'''    at Microsoft.CodeAnalysis.VisualBasic.SyntaxFactory.SeparatedList[TNode](IEnumerable`1 nodes)
+'''    at ICSharpCode.CodeConverter.VB.MethodBodyExecutableStatementVisitor.ConvertSwitchSection(SwitchSectionSyntax section)
+'''    at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+'''    at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+'''    at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+'''    at ICSharpCode.CodeConverter.VB.MethodBodyExecutableStatementVisitor.VisitSwitchStatement(SwitchStatementSyntax node)
+'''    at Microsoft.CodeAnalysis.CSharp.CSharpSyntaxVisitor`1.Visit(SyntaxNode node)
+'''    at ICSharpCode.CodeConverter.VB.CommentConvertingMethodBodyVisitor.DefaultVisit(SyntaxNode node)
+''' 
+''' Input:
+'''             switch (value)
+'''             {
+'''                 case string strValue:
+'''                     try
+'''                     {
+'''                         result = DevExpress.Drawing.DXImage.FromBase64String(strValue);
+'''                     }
+'''                     catch
+'''                     {
+'''                         int str2int = 0;
+'''                         if (System.Int32.TryParse(strValue, out str2int))
+'''                         {
+'''                             result = str2int;
+'''                         }
+'''                         else
+'''                         {
+'''                             result = strValue;
+'''                         }
+'''                     }
+'''                     return true;
+'''                 case int intValue:
+'''                     result = intValue;
+'''                     return true;
+'''                 case bool boolValue:
+'''                     result = boolValue;
+'''                     return true;
+'''                 default:
+'''                     result = value == null ? null : value.ToString();
+'''                     return true;
+'''             }
+''' 
+'''  End Function
     End Class
-#End Region ' #converter
+#End Region  ' #converter
 End Namespace
