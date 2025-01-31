@@ -8,8 +8,10 @@ namespace DataImportExample
 {
     public partial class Form1 : DevExpress.XtraEditors.XtraForm
     {
+        #region #ImageBytes
         byte[] imageBytes1 = File.ReadAllBytes("images//img.png");
         byte[] imageBytes2 = File.ReadAllBytes("images//x-docserver.png");
+        #endregion #ImageBytes
         // ...
         public Form1()
         {
@@ -106,9 +108,7 @@ namespace DataImportExample
         #endregion #ImportDataTable
 
         #region #CreateTable
-        void CreateTable()
-        {
-
+        void CreateTable() {
             Worksheet worksheet = spreadsheetControl1.Document.Worksheets[0];
 
             // Insert a table in the worksheet.
@@ -160,10 +160,9 @@ namespace DataImportExample
         #endregion #CreateTable
 
 
-        void ImportArrays()
-        {
-            Worksheet worksheet = spreadsheetControl1.Document.Worksheets[0];
+        void ImportArrays() {
             #region #ImportArrays
+            Worksheet worksheet = spreadsheetControl1.Document.Worksheets[0];
             // Create an array containing string values.
             string[] array = new string[] { "AAA", "BBB", "CCC", "DDD" };
 
@@ -181,10 +180,9 @@ namespace DataImportExample
             #endregion #ImportArrays
         }
 
-        void ImportList()
-        {
-            Worksheet worksheet = spreadsheetControl1.Document.Worksheets[0];
+        void ImportList() {
             #region #ImportList
+            Worksheet worksheet = spreadsheetControl1.Document.Worksheets[0];
             // Create a List object containing string values.
             List<string> cities = new List<string>
             {
