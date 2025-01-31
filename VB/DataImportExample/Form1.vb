@@ -8,7 +8,7 @@ Namespace DataImportExample
 	Partial Public Class Form1
 		Inherits DevExpress.XtraEditors.XtraForm
 		
-		#Region #ImageBytes
+		#Region "#ImageBytes"
 		Private imageBytes1() As Byte = File.ReadAllBytes("images//img.png")
 		Private imageBytes2() As Byte = File.ReadAllBytes("images//x-docserver.png")
 		#End Region #ImageBytes
