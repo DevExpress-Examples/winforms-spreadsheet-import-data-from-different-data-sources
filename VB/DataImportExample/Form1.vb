@@ -65,9 +65,9 @@ Namespace DataImportExample
 			End Try
 		End Sub
 
-		#Region "#ImportDataTable"
+		
 		Private Sub ImportDataTable()
-
+			#Region "#ImportDataTable"
 			Dim worksheet As Worksheet = spreadsheetControl1.Document.Worksheets(0)
 
 			' Create a "Products" DataTable object with four columns.
@@ -83,9 +83,9 @@ Namespace DataImportExample
 			sourceTable.Rows.Add("Geitost", 15, 70, 0.07, imageBytes2)
 
 			' Import data from the data table into the worksheet and insert it, starting with the B2 cell.
-			worksheet.Import(sourceTable, True, 1, 1)
-		End Sub
+			worksheet.Import(sourceTable, True, 1, 1)		
 		#End Region ' #ImportDataTable
+	End Sub
 
 		#Region "#CreateTable"
 		Private Sub CreateTable()
@@ -141,8 +141,9 @@ Namespace DataImportExample
 
 
 		Private Sub ImportArrays()
+			
+			#Region "#ImportArrays"
 			Dim worksheet As Worksheet = spreadsheetControl1.Document.Worksheets(0)
-'			#Region "#ImportArrays"
 			' Create an array containing string values.
 			Dim array() As String = { "AAA", "BBB", "CCC", "DDD" }
 
@@ -157,12 +158,12 @@ Namespace DataImportExample
 
 			' Import the two-dimensional array into the worksheet and insert it, starting with the B3 cell.
 			worksheet.Import(names, 2, 1)
-'			#End Region ' #ImportArrays
+			#End Region ' #ImportArrays
 		End Sub
 
-		Private Sub ImportList()
+		Private Sub ImportList()			
+			#Region "#ImportList"
 			Dim worksheet As Worksheet = spreadsheetControl1.Document.Worksheets(0)
-'			#Region "#ImportList"
 			' Create a List object containing string values.
 			Dim cities As New List(Of String) From {"New York", "Rome", "Beijing", "Delhi"}
 
@@ -177,11 +178,11 @@ Namespace DataImportExample
 
 			' Import the image list into the worksheet and insert it vertically
 			worksheet.Import(imageList, 0, 2, True, New DataImportOptions())
-'			#End Region ' #ImportList
+			#End Region ' #ImportList
 		End Sub
 
 		Private Sub ImportArrayList()
-'			#Region "#ImportArrayList"
+			#Region "#ImportArrayList"
 			Dim worksheet As Worksheet = spreadsheetControl1.Document.Worksheets(0)
 			Dim listDataSource As New System.Collections.ArrayList() From {
 				New TestObject(1, "Jane", True, imageBytes1),
@@ -190,20 +191,20 @@ Namespace DataImportExample
 				New TestObject(4, "Michael", False, imageBytes2)
 			}
 			worksheet.Import(listDataSource, 0, 0)
-'			#End Region ' #ImportArrayList
+			#End Region ' #ImportArrayList
 		End Sub
 
 		Private Sub btnImportObject_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnImportObject.Click
-'			#Region "#ImportObject"
+			#Region "#ImportObject"
 			Dim worksheet As Worksheet = spreadsheetControl1.Document.Worksheets(0)
 			worksheet.Clear(worksheet.GetUsedRange())
 			worksheet.Import(New TestObject(1, "1", True, imageBytes1), 0, 0)
-'			#End Region ' #ImportObject
+			#End Region ' #ImportObject
 		End Sub
 
 
 		Private Sub btnUseOptions_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUseOptions.Click
-'			#Region "#ImportUsingOptions"
+			#Region "#ImportUsingOptions"
 			Dim worksheet As Worksheet = spreadsheetControl1.Document.Worksheets(0)
 			worksheet.Clear(worksheet.GetUsedRange())
 			Dim arrayR1C1() As String = { "a", "b", "=R1C1&R1C2" }
@@ -217,11 +218,11 @@ Namespace DataImportExample
 				.ImportFormulas = True,
 				.FormulaCulture = New System.Globalization.CultureInfo("de-DE")
 			})
-'			#End Region ' #ImportUsingOptions
+			#End Region ' #ImportUsingOptions
 		End Sub
 
 		Private Sub btnUseFields_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUseFields.Click
-'			#Region "#ImportSpecifiedFields"
+			#Region "#ImportSpecifiedFields"
 			Dim worksheet As Worksheet = spreadsheetControl1.Document.Worksheets(0)
 			worksheet.Clear(worksheet.GetUsedRange())
 
@@ -232,11 +233,11 @@ Namespace DataImportExample
 			worksheet.Import(list, 0, 0, New DataSourceImportOptions() With {
 				.PropertyNames = New String() { "BoolValue", "ImageValue" }
 			})
-'			#End Region ' #ImportSpecifiedFields
+			#End Region ' #ImportSpecifiedFields
 		End Sub
 
 		Private Sub btnUseConverter_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUseConverter.Click
-'			#Region "#ImportUsingConverter"
+			#Region "#ImportUsingConverter"
 			Dim worksheet As Worksheet = spreadsheetControl1.Document.Worksheets(0)
 			worksheet.Clear(worksheet.GetUsedRange())
 			Dim imageBase64 As String = Convert.ToBase64String(imageBytes1)
@@ -250,7 +251,7 @@ Namespace DataImportExample
 				.PropertyNames = New String() { "IntValue", "Value", "BoolValue", "ImageBase64" }
 			})
 			worksheet.Import(list, 0, 0, New DataSourceImportOptions() With {.Converter = New TestDataValueConverter()})
-'			#End Region ' #ImportUsingConverter
+			#End Region ' #ImportUsingConverter
 		End Sub
 	End Class
 End Namespace
