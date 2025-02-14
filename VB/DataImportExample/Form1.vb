@@ -11,7 +11,7 @@ Namespace DataImportExample
 		#Region "#ImageBytes"
 		Private imageBytes1() As Byte = File.ReadAllBytes("images//img.png")
 		Private imageBytes2() As Byte = File.ReadAllBytes("images//x-docserver.png")
-		#End Region #ImageBytes
+		#End Region
 		' ...
 		Public Sub New()
 			InitializeComponent()
